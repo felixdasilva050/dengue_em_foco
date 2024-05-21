@@ -1,89 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="MissingClass">
+    android:padding="16dp">
 
     <ImageView
-        android:id="@+id/logoImageView"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:src="@drawable/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        android:importantForAccessibility="no"
+        android:src="@drawable/logo" />
 
     <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="0dp"
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/logo"
         android:text="@string/apresentamos_o"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="logoImageView"
-        app:layout_constraintTop_toBottomOf="logoImageView" />
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/subtitleTextView"
-        android:layout_width="0dp"
+        android:id="@+id/subtitulo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/dengue_em_foco"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="logoImageView"
-        app:layout_constraintTop_toBottomOf="titleTextView" />
-
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_below="@id/titulo"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:text="@string/o_app_que_te_deixa_por_dentro_da_situa_o_da_dengue_em_cada_estado_do_brasil"
-        android:textSize="16sp"
         android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="logoImageView"
-        app:layout_constraintTop_toBottomOf="subtitleTextView" />
+        android:text="@string/dengue_em_foco"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/blue"
+        android:text="@string/main_text"
+        android:textSize="16sp" />
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="0dp"
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/descricao"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/entrar"
         android:background="@color/white"
         android:textColor="@color/blue"
-        android:radius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="descriptionTextView" />
+        android:text="@string/entrar" />
 
     <Button
-        android:id="@+id/signupButton"
-        android:layout_width="0dp"
+        android:id="@+id/cadastrar_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/cadastre_se"
+        android:layout_below="@id/login_button"
+        android:layout_centerHorizontal="true"
         android:background="@color/blue"
         android:textColor="@color/white"
-        android:radius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.254"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="loginButton" />
+        android:layout_marginTop="16dp"
+        android:text="@string/cadastre_se" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

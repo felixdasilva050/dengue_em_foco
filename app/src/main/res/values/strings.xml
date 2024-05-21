@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">dengue_em_foco</string>
     <string name="dengue_em_foco">Dengue em Foco,</string>
-    <string name="o_app_que_te_deixa_por_dentro_da_situa_o_da_dengue_em_cada_estado_do_brasil">o app que te deixa por dentro da situação da dengue em cada estado do Brasil!</string>
+    <string name="main_text">O app que te deixa por dentro da situação da dengue em cada estado do Brasil!</string>
     <string name="entrar">Entrar</string>
     <string name="cadastre_se">Cadastre-se</string>
     <string name="apresentamos_o">Apresentamos o</string>
     <string name="digite_seu_nome">Digite seu nome</string>
     <string name="logo">LOGO</string>
     <string name="acessar">Acessar</string>
-    <string name="todo">TODO</string>
+    <string name="label_name">Digite seu nome</string>
+
 </resources>
