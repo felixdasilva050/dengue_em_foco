@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="40dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_title"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/blue"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/label_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/registration_label_name"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/name_input"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_name"
+        android:layout_marginTop="4dp"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        tools:ignore="labelFor" />
+
+    <TextView
+        android:id="@+id/label_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:text="@string/registration_label_email"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_below="@id/label_email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        tools:ignore="labelFor" />
+
+    <TextView
+        android:id="@+id/label_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="@string/registration_label_city"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/city_input"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_city"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        tools:ignore="labelFor" />
+
+
+    <TextView
+        android:id="@+id/label_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="@string/registration_label_state"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/state_input"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_state"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        tools:ignore="labelFor" />
+
+    <Button
+        android:id="@+id/registration_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:text="@string/button_registration_label"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_below="@id/state_input"
+        android:layout_marginTop="30dp"
+        />
+
+</RelativeLayout>
