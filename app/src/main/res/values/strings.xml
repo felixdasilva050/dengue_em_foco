@@ -10,4 +10,11 @@
     <string name="acessar">Acessar</string>
     <string name="label_name">Digite seu nome</string>
 
+    //RegistrationActivityValues
+    <string name="registration_title">Cadastro</string>
+    <string name="registration_label_name">Nome</string>
+    <string name="registration_label_email">Email</string>
+    <string name="registration_label_city">Cidade</string>
+    <string name="registration_label_state">Estado</string>
+    <string name="button_registration_label">Enviar</string>
 </resources>
