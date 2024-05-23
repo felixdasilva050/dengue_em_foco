@@ -16,5 +16,11 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        val registrationButton = findViewById<Button>(R.id.cadastrar_button)
+        registrationButton.setOnClickListener {
+            val intent = Intent(this, RegistrationActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

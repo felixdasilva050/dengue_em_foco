@@ -1,8 +1,8 @@
 package com.dengue_em_foco
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.content.Intent
 import androidx.activity.ComponentActivity
 
 class LoginActivity : ComponentActivity() {

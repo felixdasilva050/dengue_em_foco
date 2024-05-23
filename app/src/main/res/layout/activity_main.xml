@@ -16,56 +16,62 @@
         android:id="@+id/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:layout_below="@id/logo"
+        android:layout_marginTop="16dp"
         android:text="@string/apresentamos_o"
         android:textColor="@color/blue"
-        android:textSize="18sp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/subtitulo"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/titulo"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/dengue_em_foco"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/descricao"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/subtitulo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/main_text"
-        android:textSize="16sp" />
+        android:textSize="42sp" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/descricao"
+        android:elevation="20dp"
+        android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@color/white"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/white"
         android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/entrar" />
 
     <Button
         android:id="@+id/cadastrar_button"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_button"
         android:layout_centerHorizontal="true"
-        android:background="@color/blue"
+        android:background="@drawable/roundstyle"
         android:textColor="@color/white"
+        android:fontFamily="@font/poppins_semibold"
+        android:backgroundTint="@color/blue"
         android:layout_marginTop="16dp"
         android:text="@string/cadastre_se" />
 
