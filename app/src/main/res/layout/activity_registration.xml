@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -37,33 +36,13 @@
         tools:ignore="labelFor" />
 
     <TextView
-        android:id="@+id/label_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="@string/registration_label_email"
-        android:textColor="@color/blue"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/email_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_below="@id/label_email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        tools:ignore="labelFor" />
-
-    <TextView
         android:id="@+id/label_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="140dp"
         android:text="@string/registration_label_city"
-        android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/blue"
+        android:fontFamily="@font/poppins_semibold"
         android:textSize="18sp" />
 
     <EditText
@@ -81,7 +60,7 @@
         android:id="@+id/label_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="220dp"
         android:text="@string/registration_label_state"
         android:textColor="@color/blue"
         android:fontFamily="@font/poppins_semibold"
