@@ -11,13 +11,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginButton = findViewById<Button>(R.id.login_button)
+        val loginButton = findViewById<Button>(R.id.main_login_button)
         loginButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        val registrationButton = findViewById<Button>(R.id.cadastrar_button)
+        val registrationButton = findViewById<Button>(R.id.main_register_button)
         registrationButton.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
