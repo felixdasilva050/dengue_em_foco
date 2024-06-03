@@ -6,6 +6,10 @@ import android.widget.EditText
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.lifecycleScope
+import com.dengue_em_foco.com.dengue_em_foco.entities.District
+import com.dengue_em_foco.com.dengue_em_foco.service.IbgeService
+import kotlinx.coroutines.launch
 
 class RegistrationActivity : ComponentActivity() {
 
@@ -38,6 +42,14 @@ class RegistrationActivity : ComponentActivity() {
                 }
             } else {
                 Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show()
+            }
+            lifecycleScope.launch {
+                val district:District? = IbgeService.getDistrictByNameAndUF(city,uf)
+                if(district != null){
+                    Toast.makeText(this@RegistrationActivity,"id:${district.id}", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@RegistrationActivity,"Município não encontrado", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
