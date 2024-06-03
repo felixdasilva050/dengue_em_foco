@@ -2,12 +2,9 @@ package com.dengue_em_foco.com.dengue_em_foco.service
 
 import com.dengue_em_foco.com.dengue_em_foco.api.IbgeEndpoint
 import com.dengue_em_foco.com.dengue_em_foco.util.NetworkUtils
-import android.util.Log
 import com.dengue_em_foco.com.dengue_em_foco.entities.District
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class IbgeService {
