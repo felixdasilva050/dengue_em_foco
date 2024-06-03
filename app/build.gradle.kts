@@ -70,4 +70,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+    //RETROFIT DEPENDENCIES - BEGIN
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //RETROFIT DEPENDENCIES - END
+
+    //GOOGLE - BEGIN
+    implementation ("com.google.code.gson:gson:2.11.0")
+    //GOOGLE - END
 }
