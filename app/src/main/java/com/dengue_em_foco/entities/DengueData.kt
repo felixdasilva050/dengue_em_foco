@@ -1,0 +1,35 @@
+package com.dengue_em_foco.com.dengue_em_foco.entities
+
+data class DengueData(
+    val data_iniSE: Long,
+    val SE: Int,
+    val casos_est: Double,
+    val casos_est_min: Int,
+    val casos_est_max: Int,
+    val casos: Int,
+    val p_rt1: Double,
+    val p_inc100k: Double,
+    val Localidade_id: Int,
+    val nivel: Int,
+    val id: Long,
+    val versao_modelo: String,
+    val tweet: Int,
+    val Rt: Double,
+    val pop: Int,
+    val tempmin: Double,
+    val umidmax: Double,
+    val receptivo: Int,
+    val transmissao: Int,
+    val nivel_inc: Int,
+    val umidmed: Double,
+    val umidmin: Double,
+    val tempmed: Double,
+    val tempmax: Double,
+    val casprov: Any?,
+    val casprov_est: Any?,
+    val casprov_est_min: Any?,
+    val casprov_est_max: Any?,
+    val casconf: Any?,
+    val notif_accum_year: Int
+)
+

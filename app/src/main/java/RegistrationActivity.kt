@@ -6,6 +6,17 @@ import android.widget.EditText
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.lifecycleScope
+import com.dengue_em_foco.com.dengue_em_foco.api.DengueService
+import com.dengue_em_foco.com.dengue_em_foco.entities.DengueData
+import com.dengue_em_foco.com.dengue_em_foco.entities.District
+import com.dengue_em_foco.com.dengue_em_foco.entities.Municipio
+import com.dengue_em_foco.com.dengue_em_foco.service.IbgeService
+import com.dengue_em_foco.com.dengue_em_foco.util.NetworkUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Calendar
 
 class RegistrationActivity : ComponentActivity() {
 
@@ -26,7 +37,31 @@ class RegistrationActivity : ComponentActivity() {
             val name = nameEditText.text.toString()
             val city = cityEditText.text.toString()
             val uf = ufEditText.text.toString()
-
+            var cases:Int
+            lifecycleScope.launch {
+                val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
+                if (district != null) {
+                    Toast.makeText(this@RegistrationActivity, "id:${district.id}", Toast.LENGTH_SHORT).show()
+                    val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
+                    val dengueService = retrofit.create(DengueService::class.java)
+                    try {
+                        val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
+                        val startWeek = endWeek - 5
+                        val dengueDatas = dengueService.getDengueData(
+                            "dengue", district.id, "json",
+                            startWeek, endWeek, 2021, 2021)
+                        val dengueData: DengueData = dengueDatas.last()
+                        withContext(Dispatchers.Main) {cases = dengueData.casos}
+                        Toast.makeText(this@RegistrationActivity, "cases: ${cases}", Toast.LENGTH_SHORT).show()
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(this@RegistrationActivity, "Município não encontrado", Toast.LENGTH_SHORT).show()
+                }
+            }
             if (name.isNotEmpty() && city.isNotEmpty() && uf.isNotEmpty()) {
                 val success = dbHelper.addUser(name, city, uf)
                 if (success) {
