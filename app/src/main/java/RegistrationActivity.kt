@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.dengue_em_foco.com.dengue_em_foco.api.DengueService
 import com.dengue_em_foco.com.dengue_em_foco.entities.DengueData
 import com.dengue_em_foco.com.dengue_em_foco.entities.District
+import com.dengue_em_foco.com.dengue_em_foco.entities.Municipio
 import com.dengue_em_foco.com.dengue_em_foco.service.IbgeService
 import com.dengue_em_foco.com.dengue_em_foco.util.NetworkUtils
 import kotlinx.coroutines.Dispatchers
@@ -38,19 +39,20 @@ class RegistrationActivity : ComponentActivity() {
             val uf = ufEditText.text.toString()
             var cases:Int
             lifecycleScope.launch {
-                val district: District? = IbgeService.getDistrictByNameAndUF(city, uf)
+                val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
                 if (district != null) {
                     Toast.makeText(this@RegistrationActivity, "id:${district.id}", Toast.LENGTH_SHORT).show()
                     val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
                     val dengueService = retrofit.create(DengueService::class.java)
                     try {
                         val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
-                        val startWeek = endWeek - 3
+                        val startWeek = endWeek - 5
                         val dengueDatas = dengueService.getDengueData(
                             "dengue", district.id, "json",
                             startWeek, endWeek, 2021, 2021)
                         val dengueData: DengueData = dengueDatas.last()
                         withContext(Dispatchers.Main) {cases = dengueData.casos}
+                        Toast.makeText(this@RegistrationActivity, "cases: ${cases}", Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
