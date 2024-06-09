@@ -84,6 +84,19 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return exists
     }
 
+    fun userWithCityNameExists(name: String, nameCity: String): Boolean {
+        val db = this.readableDatabase
+        val cursor: Cursor = db.query(
+            TABLE_DENGUE_NOTICE, arrayOf(COLUMN_ID),
+            "$COLUMN_NAME = ? AND $COLUMN_CITY = ?", arrayOf(name, nameCity),
+            null, null, null
+        )
+        val exists = cursor.moveToFirst()
+        cursor.close()
+        db.close()
+        return exists
+    }
+
     fun addDengueNotice(userId: String, cases: Int, municipio: Municipio): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
