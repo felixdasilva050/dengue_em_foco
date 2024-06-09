@@ -41,18 +41,17 @@ class RegistrationActivity : ComponentActivity() {
             lifecycleScope.launch {
                 val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
                 if (district != null) {
-                    Toast.makeText(this@RegistrationActivity, "id:${district.id}", Toast.LENGTH_SHORT).show()
                     val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
                     val dengueService = retrofit.create(DengueService::class.java)
                     try {
                         val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
+                        val year = Calendar.getInstance().get(Calendar.YEAR)
                         val startWeek = endWeek - 5
                         val dengueDatas = dengueService.getDengueData(
                             "dengue", district.id, "json",
-                            startWeek, endWeek, 2021, 2021)
+                            startWeek, endWeek, year, year)
                         val dengueData: DengueData = dengueDatas.last()
                         withContext(Dispatchers.Main) {cases = dengueData.casos}
-                        Toast.makeText(this@RegistrationActivity, "cases: ${cases}", Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
