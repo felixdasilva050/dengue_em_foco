@@ -38,32 +38,33 @@ class RegistrationActivity : ComponentActivity() {
             val city = cityEditText.text.toString()
             val uf = ufEditText.text.toString()
             var cases:Int
-            lifecycleScope.launch {
-                val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
-                if (district != null) {
-                    val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
-                    val dengueService = retrofit.create(DengueService::class.java)
-                    try {
-                        val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
-                        val year = Calendar.getInstance().get(Calendar.YEAR)
-                        val startWeek = endWeek - 5
-                        val dengueDatas = dengueService.getDengueData(
-                            "dengue", district.id, "json",
-                            startWeek, endWeek, year, year)
-                        val dengueData: DengueData = dengueDatas.last()
-                        withContext(Dispatchers.Main) {cases = dengueData.casos}
-                    } catch (e: Exception) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                } else {
-                    Toast.makeText(this@RegistrationActivity, "Município não encontrado", Toast.LENGTH_SHORT).show()
-                }
-            }
             if (name.isNotEmpty() && city.isNotEmpty() && uf.isNotEmpty()) {
                 val success = dbHelper.addUser(name, city, uf)
-                if (success) {
+                if (!success.isNullOrEmpty()) {
+                    lifecycleScope.launch {
+                        val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
+                        if (district != null) {
+                            val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
+                            val dengueService = retrofit.create(DengueService::class.java)
+                            try {
+                                val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
+                                val year = Calendar.getInstance().get(Calendar.YEAR)
+                                val startWeek = endWeek - 5
+                                val dengueDatas = dengueService.getDengueData(
+                                    "dengue", district.id, "json",
+                                    startWeek, endWeek, year, year)
+                                val dengueData: DengueData = dengueDatas.last()
+                                withContext(Dispatchers.Main) {cases = dengueData.casos}
+                                dbHelper.addDengueNotice(success,cases,district.nome)
+                            } catch (e: Exception) {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        } else {
+                            Toast.makeText(this@RegistrationActivity, "Município não encontrado", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                     Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
