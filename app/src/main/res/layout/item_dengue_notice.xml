@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/date_update"
-        android:layout_width="wrap_content"
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date" />
+        android:text="user_name"
+        android:textAlignment="viewStart" />
 
     <TextView
-        android:id="@+id/name_district"
-        android:layout_width="wrap_content"
+        android:id="@+id/date_update"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="District" />
+        android:text="Date"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/cases"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cases" />
+        android:text="Cases"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/name_district"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="District" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            app:srcCompat="@android:drawable/ic_delete" />
+    </LinearLayout>
 </LinearLayout>
