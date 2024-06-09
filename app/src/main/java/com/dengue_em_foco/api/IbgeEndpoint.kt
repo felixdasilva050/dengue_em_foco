@@ -1,6 +1,6 @@
-package com.dengue_em_foco.com.dengue_em_foco.api
+package com.dengue_em_foco.api
 
-import com.dengue_em_foco.com.dengue_em_foco.entities.District
+import com.dengue_em_foco.entities.District
 import retrofit2.Call
 import retrofit2.http.Path
 import retrofit2.http.GET

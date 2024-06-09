@@ -1,9 +1,9 @@
-package com.dengue_em_foco.com.dengue_em_foco.service
+package com.dengue_em_foco.service
 
-import com.dengue_em_foco.com.dengue_em_foco.api.IbgeEndpoint
-import com.dengue_em_foco.com.dengue_em_foco.util.NetworkUtils
-import com.dengue_em_foco.com.dengue_em_foco.entities.District
-import com.dengue_em_foco.com.dengue_em_foco.entities.Municipio
+import com.dengue_em_foco.api.IbgeEndpoint
+import com.dengue_em_foco.util.NetworkUtils
+import com.dengue_em_foco.entities.District
+import com.dengue_em_foco.entities.Municipio
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
