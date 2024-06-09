@@ -38,41 +38,44 @@ class RegistrationActivity : ComponentActivity() {
             val uf = ufEditText.text.toString()
             var cases:Int
             if (name.isNotEmpty() && city.isNotEmpty() && uf.isNotEmpty()) {
-                val userId = dbHelper.addUser(name, city, uf)
-                if (userId != null) {
-                    Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
-                    lifecycleScope.launch {
-                        val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
-                        if (district != null) {
-                            val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
-                            val dengueService = retrofit.create(DengueService::class.java)
-                            try {
-                                val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
-                                val year = Calendar.getInstance().get(Calendar.YEAR)
-                                val startWeek = endWeek - 5
-                                val dengueDatas = dengueService.getDengueData(
-                                    "dengue", district.id, "json",
-                                    startWeek, endWeek, year, year)
-                                val dengueData: DengueData = dengueDatas.last()
-                                withContext(Dispatchers.Main) {cases = dengueData.casos}
-                                val successRegistrationNoticeDengue:Boolean = dbHelper.addDengueNotice(userId, cases, district)
-                                if (successRegistrationNoticeDengue) {
-                                    val dengueNoticesActivity = Intent(this@RegistrationActivity, DengueNoticesActivity::class.java)
-                                    dengueNoticesActivity.putExtra("USER_ID", userId)
-                                    startActivity(dengueNoticesActivity)
-                                } else {
-                                    Toast.makeText(this@RegistrationActivity, "Failed to add dengue notice.", Toast.LENGTH_SHORT).show()
+                if(!dbHelper.userWithCityNameExists(name, city)){
+                    val userId = dbHelper.addUser(name, city, uf)
+                    if (userId != null) {
+                        Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
+                        lifecycleScope.launch {
+                            val district: Municipio? = IbgeService.getDistrictByNameAndUF(city, uf)
+                            if (district != null) {
+                                val retrofit = NetworkUtils.getRetrofitInstance("https://info.dengue.mat.br/api/")
+                                val dengueService = retrofit.create(DengueService::class.java)
+                                try {
+                                    val endWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)
+                                    val year = Calendar.getInstance().get(Calendar.YEAR)
+                                    val startWeek = endWeek - 5
+                                    val dengueDatas = dengueService.getDengueData(
+                                        "dengue", district.id, "json",
+                                        startWeek, endWeek, year, year)
+                                    val dengueData: DengueData = dengueDatas.last()
+                                    withContext(Dispatchers.Main) {cases = dengueData.casos}
+                                    val successRegistrationNoticeDengue:Boolean = dbHelper.addDengueNotice(userId, cases, district)
+                                    if (successRegistrationNoticeDengue) {
+                                        val dengueNoticesActivity = Intent(this@RegistrationActivity, DengueNoticesActivity::class.java)
+                                        dengueNoticesActivity.putExtra("USER_ID", userId)
+                                        startActivity(dengueNoticesActivity)
+                                    } else {
+                                        Toast.makeText(this@RegistrationActivity, "Failed to add dengue notice.", Toast.LENGTH_SHORT).show()
+                                    }
+                                } catch (e: Exception) {
+                                    withContext(Dispatchers.Main) {
+                                        Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
-                            } catch (e: Exception) {
-                                withContext(Dispatchers.Main) {
-                                    Toast.makeText(this@RegistrationActivity, "Erro ao obter dados de dengue: ${e.message}", Toast.LENGTH_SHORT).show()
-                                }
+                            } else {
+                                Toast.makeText(this@RegistrationActivity, "Município não encontrado", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            Toast.makeText(this@RegistrationActivity, "Município não encontrado", Toast.LENGTH_SHORT).show()
                         }
                     }
-                } else {
+                }
+                 else {
                     Toast.makeText(this, "Registration failed! Name might be already taken.", Toast.LENGTH_SHORT).show()
                 }
             } else {
