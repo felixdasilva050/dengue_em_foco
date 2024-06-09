@@ -1,4 +1,4 @@
-package com.dengue_em_foco
+package com.dengue_em_foco.com.dengue_em_foco
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.dengue_em_foco.R
 
 class LoginActivity : ComponentActivity() {
 

@@ -1,4 +1,4 @@
-package com.dengue_em_foco
+package com.dengue_em_foco.com.dengue_em_foco
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,9 +7,9 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import com.dengue_em_foco.R
 import com.dengue_em_foco.com.dengue_em_foco.api.DengueService
 import com.dengue_em_foco.com.dengue_em_foco.entities.DengueData
-import com.dengue_em_foco.com.dengue_em_foco.entities.District
 import com.dengue_em_foco.com.dengue_em_foco.entities.Municipio
 import com.dengue_em_foco.com.dengue_em_foco.service.IbgeService
 import com.dengue_em_foco.com.dengue_em_foco.util.NetworkUtils

@@ -13,11 +13,11 @@
         android:theme="@style/Theme.Dengue_em_foco"
         tools:targetApi="31">
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".com.dengue_em_foco.RegistrationActivity"
             android:exported="false" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".com.dengue_em_foco.LoginActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".com.dengue_em_foco.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Dengue_em_foco">
             <intent-filter>
