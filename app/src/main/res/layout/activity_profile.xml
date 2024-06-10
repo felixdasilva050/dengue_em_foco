@@ -9,11 +9,12 @@
         android:id="@+id/tv_username"
         android:layout_width="109dp"
         android:layout_height="25dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
         android:text="${USERNAME}"
         android:textColor="@color/blue"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,8 +23,8 @@
         android:layout_width="372dp"
         android:layout_height="130dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -55,18 +56,21 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
+            android:text="Delete"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_delete" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_municipio_details"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tv_username_details"
+            android:id="@+id/tv_municipio_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -80,10 +84,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="372dp"
         android:layout_height="469dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="340dp"
@@ -93,16 +97,6 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-
-            <Button
-                android:id="@+id/btn_salvar_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue"
-                android:capitalize="words"
-                android:text="Salvar"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btn_atualizar_profile"

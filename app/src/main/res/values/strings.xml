@@ -17,4 +17,6 @@
     <string name="registration_label_city">Cidade</string>
     <string name="registration_label_state">Estado</string>
     <string name="button_registration_label">Enviar</string>
+    <string name="title_activity_dengue_notices">DengueNoticesActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
