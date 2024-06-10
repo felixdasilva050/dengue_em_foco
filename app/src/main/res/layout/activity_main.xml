@@ -50,7 +50,7 @@
         android:backgroundTint="@color/white"
         android:textColor="@color/blue"
         android:fontFamily="@font/poppins_semibold"
-        android:text="@string/entrar" />
+        android:text="Histórico salvo" />
 
     <Button
         android:id="@+id/main_register_button"
