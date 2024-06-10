@@ -37,6 +37,7 @@ class DengueNoticeAdapter(
                 val cases = it.getInt(it.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CASES)).toString()
                 val city = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME_DISTRICT))
                 val date = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DATE_UPDATE))
+                val geocode = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COLUMN_GEOCODE_DISTRICT))
                 holder.dateUpdateTextView.text = date
                 holder.nameDistrictTextView.text = city
                 holder.casesTextView.text = cases
@@ -53,6 +54,7 @@ class DengueNoticeAdapter(
                     profileIntent.putExtra("cases",cases)
                     profileIntent.putExtra("city",city)
                     profileIntent.putExtra("date",date)
+                    profileIntent.putExtra("geocode",geocode)
 
                     context.startActivity(profileIntent)
                 }

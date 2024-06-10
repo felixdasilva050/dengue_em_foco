@@ -143,5 +143,21 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.delete(TABLE_DENGUE_NOTICE, whereClause, whereArgs)
     }
 
+    fun updateDengueNotice(uuid: String, cases: Int): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_CASES, cases)
 
+        val currentDateTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val formattedDateTime = currentDateTime.format(formatter)
+        contentValues.put(COLUMN_DATE_UPDATE, formattedDateTime)
+
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(uuid)
+
+        val result = db.update(TABLE_DENGUE_NOTICE, contentValues, whereClause, whereArgs)
+        db.close()
+        return result > 0
+    }
 }
