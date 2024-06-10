@@ -16,6 +16,11 @@
         android:theme="@style/Theme.Dengue_em_foco"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.Dengue_em_foco" />
+        <activity
             android:name=".DengueNoticesActivity"
             android:exported="false"
             android:label="@string/title_activity_dengue_notices"

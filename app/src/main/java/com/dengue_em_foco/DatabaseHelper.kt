@@ -15,9 +15,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     companion object {
         private const val DATABASE_NAME = "dengue_foco.db"
         private const val DATABASE_VERSION = 2
+        const val COLUMN_ID = "id"
         //BEGIN - table users
         const val TABLE_USERS = "users"
-        const val COLUMN_ID = "id"
         const val COLUMN_NAME = "name"
         //END - table users
 
@@ -120,12 +120,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     fun getDengueNoticesByUser(userId: String): Cursor {
         val db = this.readableDatabase
-        return db.query(
-            TABLE_DENGUE_NOTICE, null,
-            "$COLUMN_USER_ID = ?", arrayOf(userId),
-            null, null, null
-        )
+        val query = "SELECT $TABLE_DENGUE_NOTICE.*, $TABLE_USERS.$COLUMN_NAME AS name " +
+                "FROM $TABLE_DENGUE_NOTICE " +
+                "INNER JOIN $TABLE_USERS ON $TABLE_DENGUE_NOTICE.$COLUMN_USER_ID = $TABLE_USERS.$COLUMN_ID " +
+                "WHERE $COLUMN_ID = $userId"
+        return db.rawQuery(query, null)
     }
+
 
     fun getAllDengueNoticesWithUserNames(): Cursor {
         val db = this.readableDatabase
@@ -134,5 +135,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 "INNER JOIN $TABLE_USERS ON $TABLE_DENGUE_NOTICE.$COLUMN_USER_ID = $TABLE_USERS.$COLUMN_ID"
         return db.rawQuery(query, null)
     }
+
+    fun deleteDengueNoticeByUuid(uuid: String): Int {
+        val db = this.writableDatabase
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(uuid)
+        return db.delete(TABLE_DENGUE_NOTICE, whereClause, whereArgs)
+    }
+
 
 }
