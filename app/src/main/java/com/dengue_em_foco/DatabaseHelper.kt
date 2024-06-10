@@ -15,25 +15,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     companion object {
         private const val DATABASE_NAME = "dengue_foco.db"
         private const val DATABASE_VERSION = 2
+        //BEGIN - table users
         const val TABLE_USERS = "users"
         const val COLUMN_ID = "id"
         const val COLUMN_NAME = "name"
-        const val COLUMN_CITY = "city"
-        const val COLUMN_UF = "uf"
+        //END - table users
+
+        //BEGIN - table dengue_notice
         const val TABLE_DENGUE_NOTICE = "dengue_notice"
         const val COLUMN_USER_ID = "user_id"
         const val COLUMN_CASES = "cases"
         const val COLUMN_DATE_UPDATE = "date_update"
         const val COLUMN_NAME_DISTRICT = "name_district"
         const val COLUMN_GEOCODE_DISTRICT = "geocode_district"
+        //END - table dengue_notice
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val createUsersTable = ("CREATE TABLE $TABLE_USERS ("
                 + "$COLUMN_ID TEXT PRIMARY KEY,"
-                + "$COLUMN_NAME TEXT UNIQUE,"
-                + "$COLUMN_CITY TEXT,"
-                + "$COLUMN_UF TEXT" + ")")
+                + "$COLUMN_NAME TEXT)")
 
         val createDengueNoticeTable = ("CREATE TABLE $TABLE_DENGUE_NOTICE ("
                 + "$COLUMN_ID TEXT PRIMARY KEY,"
@@ -60,8 +61,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val id = UUID.randomUUID().toString()
         contentValues.put(COLUMN_ID, id)
         contentValues.put(COLUMN_NAME, name)
-        contentValues.put(COLUMN_CITY, city)
-        contentValues.put(COLUMN_UF, uf)
 
         return try{
             val result = db.insert(TABLE_USERS, null, contentValues)
@@ -84,18 +83,20 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return exists
     }
 
-    fun userWithCityNameExists(name: String, nameCity: String): Boolean {
+    fun userWithCityNameExists(name: String, cityName: String): Boolean {
         val db = this.readableDatabase
-        val cursor: Cursor = db.query(
-            TABLE_DENGUE_NOTICE, arrayOf(COLUMN_ID),
-            "$COLUMN_NAME = ? AND $COLUMN_CITY = ?", arrayOf(name, nameCity),
-            null, null, null
-        )
+        val query = "SELECT u.$COLUMN_NAME, m.$COLUMN_NAME_DISTRICT " +
+                "FROM $TABLE_USERS u " +
+                "INNER JOIN $TABLE_DENGUE_NOTICE m ON u.$COLUMN_ID = m.$COLUMN_USER_ID " +
+                "WHERE u.$COLUMN_NAME = ? AND m.$COLUMN_NAME_DISTRICT = ?"
+        val cursor: Cursor = db.rawQuery(query, arrayOf(name, cityName))
         val exists = cursor.moveToFirst()
         cursor.close()
         db.close()
         return exists
     }
+
+
 
     fun addDengueNotice(userId: String, cases: Int, municipio: Municipio): Boolean {
         val db = this.writableDatabase
@@ -125,4 +126,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             null, null, null
         )
     }
+
+    fun getAllDengueNoticesWithUserNames(): Cursor {
+        val db = this.readableDatabase
+        val query = "SELECT $TABLE_DENGUE_NOTICE.*, $TABLE_USERS.$COLUMN_NAME AS name " +
+                "FROM $TABLE_DENGUE_NOTICE " +
+                "INNER JOIN $TABLE_USERS ON $TABLE_DENGUE_NOTICE.$COLUMN_USER_ID = $TABLE_USERS.$COLUMN_ID"
+        return db.rawQuery(query, null)
+    }
+
 }

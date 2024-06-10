@@ -34,7 +34,7 @@ class RegistrationActivity : ComponentActivity() {
 
         sendRegistrationButton.setOnClickListener {
             val name = nameEditText.text.toString()
-            val city = cityEditText.text.toString()
+            val city = cityEditText.text.toString().trim()
             val uf = ufEditText.text.toString()
             var cases:Int
             if (name.isNotEmpty() && city.isNotEmpty() && uf.isNotEmpty()) {
@@ -76,7 +76,7 @@ class RegistrationActivity : ComponentActivity() {
                     }
                 }
                  else {
-                    Toast.makeText(this, "Registration failed! Name might be already taken.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Já existe uma cidade registrada com seu nome", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show()

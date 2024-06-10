@@ -25,6 +25,7 @@ class DengueNoticeAdapter(
             holder.dateUpdateTextView.text = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DATE_UPDATE))
             holder.nameDistrictTextView.text = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME_DISTRICT))
             holder.casesTextView.text = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CASES)).toString()
+            holder.nameUser.text = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME)).toString()
         }
     }
 
@@ -36,5 +37,6 @@ class DengueNoticeAdapter(
         val dateUpdateTextView: TextView = itemView.findViewById(R.id.date_update)
         val nameDistrictTextView: TextView = itemView.findViewById(R.id.name_district)
         val casesTextView: TextView = itemView.findViewById(R.id.cases)
+        val nameUser: TextView = itemView.findViewById(R.id.user_name)
     }
 }

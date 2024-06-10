@@ -22,12 +22,9 @@ class DengueNoticesActivity : ComponentActivity() {
         dbHelper = DatabaseHelper(this)
         recyclerView = findViewById(R.id.recycler_view)
 
-        userId = intent.getStringExtra("USER_ID") ?: ""
-        if (userId.isNotEmpty()) {
-            val cursor: Cursor = dbHelper.getDengueNoticesByUser(userId)
-            dengueNoticeAdapter = DengueNoticeAdapter(this, cursor)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = dengueNoticeAdapter
-        }
+        val cursor: Cursor = dbHelper.getAllDengueNoticesWithUserNames()
+        dengueNoticeAdapter = DengueNoticeAdapter(this, cursor)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = dengueNoticeAdapter
     }
 }
